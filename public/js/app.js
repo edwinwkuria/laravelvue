@@ -1946,10 +1946,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      listItems: ["Got to the shop", "Go to the Market", "Clean the house"]
+      listItems: ["Got to the shop", "Go to the Market", "Clean the house"],
+      message: "Vue JS"
     };
   },
   mounted: function mounted() {
@@ -37588,18 +37592,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "ul",
-    { staticClass: "list-group" },
-    _vm._l(_vm.listItems, function(listItem) {
-      return _c("li", { key: listItem, staticClass: "list-group-item" }, [
-        _vm._v(_vm._s(listItem))
-      ])
-    }),
-    0
-  )
+  return _c("div", { staticClass: "container" }, [
+    _c("span", [_vm._v(_vm._s(_vm.message))]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "list-group" }, [
+      _c("li", { staticClass: "list-group-item" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -49794,7 +49802,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('tasks', __webpack_require__(/*! ./components/Tasks.vue */ "./resources/js/components/Tasks.vue"));
+Vue.component('tasks', __webpack_require__(/*! ./components/Tasks.vue */ "./resources/js/components/Tasks.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
