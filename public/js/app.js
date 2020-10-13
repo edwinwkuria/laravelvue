@@ -1949,15 +1949,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      listItems: ["Got to the shop", "Go to the Market", "Clean the house"],
-      message: "Vue JS"
+      listItems: [],
+      message: "Tasks",
+      count: 0,
+      NewItem: '',
+      info: null
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    console.log('Component mounted.'), axios.get('https://run.mocky.io/v3/5ceb96ee-dc79-447e-886f-3c2bba84c957').then(function (response) {
+      return _this.info = response.data;
+    });
+  },
+  methods: {
+    AddCount: function AddCount() {
+      this.count += 1;
+    },
+    AddItem: function AddItem() {
+      this.listItems.push(this.NewItem);
+      this.NewItem = '';
+      this.AddCount();
+    }
   }
 });
 
@@ -37595,19 +37616,45 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("span", [_vm._v(_vm._s(_vm.message))]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("span", [_vm._v(" " + _vm._s(_vm.count))]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "list-group" },
+      _vm._l(_vm.listItems, function(listItem) {
+        return _c("li", { staticClass: "list-group-item" }, [
+          _vm._v(" " + _vm._s(listItem))
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.NewItem,
+          expression: "NewItem"
+        }
+      ],
+      attrs: { placeholder: "New Item" },
+      domProps: { value: _vm.NewItem },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.NewItem = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.AddItem } }, [_vm._v("Add One")]),
+    _vm._v("\r\n" + _vm._s(_vm.info) + "\r\n")
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-group" }, [
-      _c("li", { staticClass: "list-group-item" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
