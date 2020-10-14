@@ -1953,10 +1953,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       listItems: [],
+      arrayEmpty: [],
       message: "Tasks",
       count: 0,
       NewItem: '',
@@ -1966,8 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    console.log('Component mounted.'), axios.get('https://run.mocky.io/v3/5ceb96ee-dc79-447e-886f-3c2bba84c957').then(function (response) {
-      return _this.info = response.data;
+    console.log('Component mounted.'), axios.get('https://run.mocky.io/v3/4aafaa27-4ce5-4f47-84c0-ec546c71037b').then(function (response) {
+      return _this.listItems = _this.arrayEmpty.concat(JSON.parse(response.data)).name;
     });
   },
   methods: {
@@ -1978,6 +1980,9 @@ __webpack_require__.r(__webpack_exports__);
       this.listItems.push(this.NewItem);
       this.NewItem = '';
       this.AddCount();
+    },
+    sortItems: function sortItems() {
+      this.listItems.sort();
     }
   }
 });
@@ -37651,6 +37656,8 @@ var render = function() {
     }),
     _vm._v(" "),
     _c("button", { on: { click: _vm.AddItem } }, [_vm._v("Add One")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.sortItems } }, [_vm._v("Sort Array")]),
     _vm._v("\r\n" + _vm._s(_vm.info) + "\r\n")
   ])
 }

@@ -7,6 +7,7 @@
 </ul>
 <input v-model="NewItem" placeholder="New Item">
 <button v-on:click="AddItem">Add One</button>
+<button v-on:click="sortItems">Sort Array</button>
 {{ info }}
 </div>
 </template>
@@ -15,6 +16,7 @@ export default {
     data: function(){
         return{
             listItems: [],
+            arrayEmpty: [],
             message : "Tasks",
             count: 0,
             NewItem: '',
@@ -24,8 +26,8 @@ export default {
     mounted() {
             console.log('Component mounted.'),
             axios
-                .get('https://run.mocky.io/v3/5ceb96ee-dc79-447e-886f-3c2bba84c957')
-                .then(response => (this.info = response.data))
+                .get('https://run.mocky.io/v3/4aafaa27-4ce5-4f47-84c0-ec546c71037b')
+                .then(response => (this.listItems = this.arrayEmpty.concat(JSON.parse(response.data)).name))
         },
     methods:{
         AddCount(){
@@ -35,6 +37,9 @@ export default {
             this.listItems.push(this.NewItem);
             this.NewItem = '';
             this.AddCount()
+        },
+        sortItems(){
+            this.listItems.sort()
         }
     }
 }
